@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = History::VERSION
   s.authors     = ["Robert Bousquet"]
   s.email       = ["rbousquet@newleaders.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/bousquet/history"
+  s.summary     = "Preserve the history of a db record"
+  s.description = "Currently offers soft deletion, and a default scope that excludes 'deleted' records"
 
   s.rubyforge_project = "history"
 
