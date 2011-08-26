@@ -6,8 +6,14 @@ module History
   included do
     default_scope lambda {
       field = [self.table_name, "deleted_at"].map{|str|"`#{str}`"}.join(".")
-      where(["#{field} IS NULL OR (#{field} IS NOT NULL AND #{field} > ?)", Time.zone.now])
+      where(["#{field} IS NULL OR (#{field} IS NOT NULL AND #{field} > ?)", historical_time])
     }
+  end
+
+  module ClassMethods
+    def historical_time
+      (Time.zone || Time).now
+    end
   end
 
   module InstanceMethods
@@ -23,7 +29,7 @@ module History
     private
 
     def set_deleted_at
-      update_attribute(:deleted_at, Time.zone.now)
+      update_attribute(:deleted_at, self.class.historical_time)
     end
 
   end
