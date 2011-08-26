@@ -12,32 +12,32 @@ actually deleting the records from the db._
 
 ## INSTALLATION
 
-  $  gem install history
+    $ gem install history
 
 ## USAGE
 
 In your model:
 
-  class User < ActiveRecord::Base
-    include History
-  end
+    class User < ActiveRecord::Base
+      include History
+    end
 
 In your queries:
 
-  User.all          # does not include deleted records
-  User.unscoped.all # includes deleted records
+    User.all          # does not include deleted records
+    User.unscoped.all # includes deleted records
 
-  User.find(1)           # raises ActiveRecord::RecordNotFound if user has been soft deleted
-  User.unscoped.find(1)  # finds user record regardless of soft deletion
+    User.find(1)           # raises ActiveRecord::RecordNotFound if user has been soft deleted
+    User.unscoped.find(1)  # finds user record regardless of soft deletion
 
 In relationships:
 
-  @account.users  # finds only users within the account scope that have not been soft deleted
-  @account.users.unscoped # CAREFUL! THIS REMOVES THE ACCOUNT SCOPE TOO!
+    @account.users  # finds only users within the account scope that have not been soft deleted
+    @account.users.unscoped # CAREFUL! THIS REMOVES THE ACCOUNT SCOPE TOO!
 
-  # THIS IS PROBABLY WHAT YOU WANT
-  # Removes the default scope on user, but then adds the account scope through an explicit where method.
+    # THIS IS PROBABLY WHAT YOU WANT
+    # Removes the default scope on user, but then adds the account scope through an explicit where method.
 
-  User.unscoped.all.where(:account_id => @account.id)
+    User.unscoped.all.where(:account_id => @account.id)
 
 
