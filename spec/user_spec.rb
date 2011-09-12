@@ -42,7 +42,7 @@ describe User do
   describe "User with another default_scope" do
     before :each do
       class User < ActiveRecord::Base
-        include History
+        include HistoricalSociety
         default_scope order(:name)
       end
     end

@@ -1,6 +1,6 @@
-require "history/version"
+require "historical_society/version"
 
-module History
+module HistoricalSociety
   extend ActiveSupport::Concern
   # Model must include a deleted_at datetime column, default NULL
   included do

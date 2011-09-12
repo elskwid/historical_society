@@ -1,9 +1,9 @@
-history -- Preserve the history of your data, starting with soft delete.
+HistoricalSociety -- Preserve the history of your data, starting with soft delete.
 ====================================
 
 ## DESCRIPTION
 
-history currently provides basic soft delete functionality on an ActiveRecord instance through the use
+The historical society gem currently provides basic soft delete functionality on an ActiveRecord instance through the use
 of a "deleted_at" timestamp column and a default_scope that excludes the soft deleted records.
 
 _Note: This currently provides a default_scope that excludes soft deleted records.  It also overrides
@@ -12,14 +12,14 @@ actually deleting the records from the db._
 
 ## INSTALLATION
 
-    $ gem install history
+    $ gem install historical_society
 
 ## USAGE
 
 In your model:
 
     class User < ActiveRecord::Base
-      include History
+      include HistoricalSociety
     end
 
 In your queries:

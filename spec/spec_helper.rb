@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'active_record'
 require 'active_support'
 
-require 'history'
+require 'historical_society'
 
 RSpec.configure do |config|
 
@@ -12,7 +12,7 @@ RSpec.configure do |config|
 
   ActiveRecord::Base.establish_connection(
     :adapter => "sqlite3",
-    :database => "#{root}/db/history.db"
+    :database => "#{root}/db/historical_society.db"
   )
 
   ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS 'users'")
@@ -22,7 +22,7 @@ RSpec.configure do |config|
   end
 
   class User < ActiveRecord::Base
-    include History
+    include HistoricalSociety
   end
 
   config.before(:each) do

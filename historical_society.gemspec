@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "history/version"
+require "historical_society/version"
 
 Gem::Specification.new do |s|
-  s.name        = "history"
-  s.version     = History::VERSION
+  s.name        = "historical_society"
+  s.version     = HistoricalSociety::VERSION
   s.authors     = ["Robert Bousquet"]
   s.email       = ["rbousquet@newleaders.com"]
-  s.homepage    = "https://github.com/bousquet/history"
+  s.homepage    = "https://github.com/bousquet/historical_society"
   s.summary     = "Preserve the history of a db record"
   s.description = "Currently offers soft deletion, and a default scope that excludes 'deleted' records"
 
-  s.rubyforge_project = "history"
+  s.rubyforge_project = "historical_society"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
