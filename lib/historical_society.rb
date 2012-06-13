@@ -16,21 +16,17 @@ module HistoricalSociety
     end
   end
 
-  module InstanceMethods
+  def destroy
+    set_deleted_at
+  end
 
-    def destroy
-      set_deleted_at
-    end
+  def delete
+    set_deleted_at
+  end
 
-    def delete
-      set_deleted_at
-    end
+  private
 
-    private
-
-    def set_deleted_at
-      update_attribute(:deleted_at, self.class.historical_time)
-    end
-
+  def set_deleted_at
+    update_attribute(:deleted_at, self.class.historical_time)
   end
 end
