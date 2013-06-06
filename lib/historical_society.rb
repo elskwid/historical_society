@@ -5,8 +5,14 @@ module HistoricalSociety
   # Model must include a deleted_at datetime column, default NULL
   included do
     default_scope lambda {
-      field = [self.table_name, "deleted_at"].map{|str|"`#{str}`"}.join(".")
-      where(["#{field} IS NULL OR (#{field} IS NOT NULL AND #{field} > ?)", historical_time])
+      table_name  = self.connection.quote_table_name(self.table_name)
+      column_name = self.connection.quote_column_name("deleted_at")
+      field       = "#{table_name}.#{column_name}"
+
+      where([
+        "#{field} IS NULL OR (#{field} IS NOT NULL AND #{field} > ?)",
+        historical_time
+      ])
     }
   end
 

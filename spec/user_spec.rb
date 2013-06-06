@@ -40,6 +40,11 @@ describe User do
   end
 
   describe "User with another default_scope" do
+    let(:connection) { ActiveRecord::Base.connection }
+    let(:table_name) { connection.quote_table_name("users") }
+    let(:column_name) { connection.quote_column_name("deleted_at") }
+    let(:field) { "#{table_name}.#{column_name}" }
+
     before :each do
       class User < ActiveRecord::Base
         include HistoricalSociety
@@ -49,7 +54,7 @@ describe User do
 
     it "should combine default scopes" do
       User.scoped.to_sql.should include("ORDER BY name")
-      User.scoped.to_sql.should include("`users`.`deleted_at` IS NOT NULL")
+      User.scoped.to_sql.should include("#{field} IS NOT NULL")
     end
   end
 
